@@ -3,24 +3,24 @@
     "data": {
         "@context": "https://schema.org/",
         "@type": "Product",
-        "name": "15.6\" Ноутбук ASUS TUF Gaming FX507ZI4-LP030 серый",
-        "description": "ASUS TUF Gaming (FX507ZI4-LP030) – это мощный и надежный ноутбук, созданный для геймеров, которым важна производительность и долговечность. Он сочетает в себе высокую производительность с прочным корпусом, что делает его идеальным для интенсивных игровых сессий и повседневного использования. Благодаря технологиям охлаждения и качественному дисплею, этот ноутбук обеспечивает плавный игровой процесс и яркие визуальные эффекты. Его эргономичный дизайн и удобная клавиатура с подсветкой делают использование комфортным даже в темное время суток.",
-        "sku": "5455004",
+        "name": "17.3\" Ноутбук ARDOR Gaming EVO E17-I7ND401 черный",
+        "description": "Этот ноутбук создан для тех, кто хочет получить качественное и производительное компьютерное устройство с наиболее востребованным функционалом. Данная модель полностью удовлетворяет данные требования. Надежный накопитель предоставляет вам возможности для долговременного хранения необходимой виртуальной информации. Устройство оборудовано веб-камерой и микрофоном, благодаря которым вы сможете организовывать видеоконференции с партнерами по бизнесу и коллегами по работе.",
+        "sku": "9083820",
         "offers": {
             "@type": "Offer",
-            "url": "https://www.dns-shop.ru/product/4fa3cb61f0b5d21a/156-noutbuk-asus-tuf-gaming-fx507zi4-lp030-seryj/",
+            "url": "https://www.dns-shop.ru/product/d43f19438dc13339/173-noutbuk-ardor-gaming-evo-e17-i7nd401-cernyj/",
             "availability": "https://schema.org/InStock",
-            "price": 147999,
+            "price": 149999,
             "priceCurrency": "RUB"
         },
         "image": [
-            "https://c.dns-shop.ru/thumb/st1/fit/300/300/e32828bb152e8211151d9a630aa37efc/d1b7fe26984781ed03132e66c7cc067b4544619677c0bea72c701af1579aefae.png",
-            "https://c.dns-shop.ru/thumb/st1/fit/300/300/81fb10a88a639eb2a1cdb4d0a7f26eb1/107e47d6f1431e05674a8159f5bf010f01e2c8caf28b285388bc9ce3d894ba42.png",
-            "https://c.dns-shop.ru/thumb/st1/fit/300/300/d90fa1d778b2ecde6fd6f84d1a3e04a8/0e9b9cf19c32f3af7bdb30ae5abe46b413ddc2ff9e787a0e21c2eb38e61cc724.png"
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/2bbd4f5c7ed7798efd1d07979a0e8e55/ebd2639864abeb0da548a14d6a9c2b559d7388693630d8612dcb4cfa6e523dd4.jpg",
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/a4799919b16f00ace47bc32ca4007a5a/6680c259e0f56d2d3a2d179c986b23df91b70eb57b39b0c5e0f99b6f748922d7.jpg",
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/b4ce4839fbd4b020c4b98e22ac56b474/b8bc88f6b61ecdcfe2ecfdf092d0e604456829e48b6767ee4d41b2a82ef2f62d.jpg"
         ],
         "brand": {
             "@type": "Brand",
-            "name": "ASUS"
+            "name": "ARDOR GAMING"
         }
     },
     "message": "",
