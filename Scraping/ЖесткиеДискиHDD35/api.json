@@ -1,0 +1,35 @@
+{
+    "result": true,
+    "data": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "1 ТБ Жесткий диск Seagate SkyHawk [ST1000VX013]",
+        "description": "Жесткий диск Seagate SkyHawk разработан специально для требовательных систем, такие как – сетевые видеорегистраторы. Он способен функционировать в режиме круглосуточной нагрузки и обеспечивает стабильность на протяжении длительной эксплуатации. Данная модель обладает емкостью 1 ТБ и подключается к оборудованию посредством интерфейса SATA III. Технология CMR способствует повышению плотности записи. Потребление энергии на уровне 3.7 Вт в режиме ожидания подчеркивает энергоэффективность накопителя Seagate SkyHawk.",
+        "sku": "5436295",
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.dns-shop.ru/product/e43759b96f16ed20/1-tb-zestkij-disk-seagate-skyhawk-st1000vx013/",
+            "availability": "https://schema.org/InStock",
+            "price": 6799,
+            "priceCurrency": "RUB"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": 4,
+            "worstRating": 0,
+            "bestRating": 5,
+            "reviewCount": 4
+        },
+        "image": [
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/ff8e74131eb6db4913dff6e03a9fe462/c77812f5bc74446a49326f3ee9a84139465d326e3afdb91e6d27978694cc47ea.jpg",
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/e5a1bb6146d0257ea26b92a96db60471/5587c7a4ca0e4965cccfeb19129a688ba237200e176eea32d1070fe8bdfa4ad5.jpg",
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/14f5824a0c1e51a260d10a24937a4c6d/e0b1da8768261ebbf28294ec670949b0426efb69e351898def65330ed6b9aea3.jpg"
+        ],
+        "brand": {
+            "@type": "Brand",
+            "name": "Seagate"
+        }
+    },
+    "message": "",
+    "errors": []
+}

@@ -1,12 +1,22 @@
 import time
 from confic import bot, dp
 from aiogram import executor, types
-from keyboard import main_keyboard, select_tech_keyboard, add_korzina, otbor_tovara
-from keyboard import delete_korzina, swipe_news, kb_add_target_pay, api_pay
+from keyboard import main_keyboard, add_korzina, otbor_tovara
+from keyboard import delete_korzina, swipe_news, kb_add_target_pay, api_pay, detali_pc
 from aiogram.utils.markdown import hbold, hlink
 from aiogram.dispatcher.filters import Text
-from Scraping.Videocard.videocard import videocard
-from Scraping.GameLaptop.game_laptop import game_laptop
+from Scraping.Видеокарты.parce import videocard
+from Scraping.Процессоры.parce import procces
+from Scraping.БлокПитания.parce import block_energy
+from Scraping.МатеринскиеПлаты.parce import mother_plata
+from Scraping.ОперативнаяПамять.parce import memory_oper
+from Scraping.ЖесткиеДискиHDD25.parce import hd25
+from Scraping.ЖесткиеДискиHDD35.parce import hd35
+from Scraping.ТвердотельныеНакопителиSSD.parce import sdd
+from Scraping.Корпуса.parce import korpus
+from Scraping.ОхлаждениеЖиткое.parce import wsh
+from Scraping.КулерыДляПроцессоров.parce import kprs
+from Scraping.ВентиляторДляКорпуса.parce import vk
 import json
 from aiogram.dispatcher import FSMContext
 from state_machine import State_Otbor
@@ -15,6 +25,7 @@ from sqlite import bd_conect, add_korzina_to_db, get_id, delete_korzina_to_db, g
 from sqlite import create_target_pay, delete_target_pay, update_user_sum
 from ScrapingNews.scraping_news import get_news
 from pay import order
+from filter_user import filter_products
 
 async def info_start(_):
     print("Я запустился")
@@ -32,125 +43,158 @@ async def cmd_start(message: types.Message):
 @dp.message_handler(Text(equals="Обновить данные🔄"))
 async def cmd_update_scrap(message: types.Message):
     await message.reply(text="Подождите, обновляем информацию...", reply_markup=ReplyKeyboardRemove())
-    videocard()
-    game_laptop()
 
-    with open("Scraping//GameLaptop//result.json", encoding="utf-8") as file:
+    block_energy(),
+    vk(),
+    kprs(),
+    wsh(),
+    hd35(),
+    time.sleep(3)
+    hd25(),
+    sdd(),
+    videocard(),
+    procces(),
+    time.sleep(3)
+    mother_plata(),
+    memory_oper(),
+    korpus()
+
+    with open("Scraping//Корпуса//result.json", encoding="utf-8") as file:
         data1 = json.load(file)
 
-    with open("Scraping//Videocard//result.json", encoding="utf-8") as file:
+    with open("Scraping//ОперативнаяПамять//result.json", encoding="utf-8") as file:
         data2 = json.load(file)
 
-    union = data1 + data2
+    with open("Scraping//МатеринскиеПлаты//result.json", encoding="utf-8") as file:
+        data3 = json.load(file)
+
+    with open("Scraping//Процессоры//result.json", encoding="utf-8") as file:
+        data4 = json.load(file)
+
+    with open("Scraping//БлокПитания//result.json", encoding="utf-8") as file:
+        data5 = json.load(file)
+
+    with open("Scraping//ТвердотельныеНакопителиSSD//result.json", encoding="utf-8") as file:
+        data6 = json.load(file)
+
+    with open("Scraping//ЖесткиеДискиHDD25//result.json", encoding="utf-8") as file:
+        data7 = json.load(file)
+
+    with open("Scraping//ЖесткиеДискиHDD35//result.json", encoding="utf-8") as file:
+        data8 = json.load(file)
+
+    with open("Scraping//Видеокарты//result.json", encoding="utf-8") as file:
+        data9 = json.load(file)
+
+    with open("Scraping//ОхлаждениеЖиткое//result.json", encoding="utf-8") as file:
+        data10 = json.load(file)
+
+    with open("Scraping//КулерыДляПроцессоров//result.json", encoding="utf-8") as file:
+        data11 = json.load(file)
+
+    with open("Scraping//ВентиляторДляКорпуса//result.json", encoding="utf-8") as file:
+        data12 = json.load(file)
+
+    union = data1 + data2 + data3 + data4 + data5 + data6 + data7 + data8 + data9 + data10 + data11 + data12
 
     with open("SQL//ebaty.json", "w", encoding="utf-8") as file:
         json.dump(union, file, indent=4, ensure_ascii=False)
 
     await message.answer(text="Данные обновлены", reply_markup=main_keyboard())
 
-@dp.message_handler(Text(equals="Найти товар💻"))
-async def cmd_select_tech(message: types.Message):
-    await message.reply(text="<i>Выберите категорию товара которую хотите найти</i>",
-                        reply_markup=select_tech_keyboard(),
+@dp.message_handler(Text(equals="Собрать ПК🖥"))
+async def cmd_detal_PC(message: types.Message):
+    await message.reply("<i>Вот список деталей</i>\n1)Процессоры\n2)Материнские платы\n3)Видеокарты\n"
+                        "4)Оперативная память\n5)Корпуса\n6)Блок питания\n7)Житкостное охлаждение\n8)Кулеры для процессоров\n"
+                        "9)Вентилятор для корпуса\n10)Твердотельные Накопители SSD\n11)Жесткие Диски HDD 3.5\n12)Жесткие Диски HDD 2.5\n"
+                        
+                        "Выбери нужную тебе деталь из данного списка",
+                        reply_markup=detali_pc(),
                         parse_mode="HTML")
 
 name_search = ""
 
-@dp.message_handler(Text(equals=["Видеокарты", "Игровые ноутбуки"]))
+@dp.message_handler(Text(equals=["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","1️⃣0️⃣","1️⃣1️⃣","1️⃣2️⃣" "Игровые ноутбуки"]))
 async def cmd_get_videocard(message: types.Message):
     global name_search
     name_search = ""
+    if message.text == "1️⃣":
+        message.text = "Процессоры"
+    elif message.text == "2️⃣":
+        message.text = "МатеринскиеПлаты"
+    elif message.text == "3️⃣":
+        message.text = "Видеокарты"
+    elif message.text == "4️⃣":
+        message.text = "ОперативнаяПамять"
+    elif message.text == "5️⃣":
+        message.text = "Корпуса"
+    elif message.text == "6️⃣":
+        message.text = "БлокПитания"
+    elif message.text == "7️⃣":
+        message.text = "Житкостное охлаждение"
+    elif message.text == "8️⃣":
+        message.text = "Кулеры для процессоров"
+    elif message.text == "9️⃣":
+        message.text = "Вентилятор для корпуса"
+    elif message.text == "1️⃣0️⃣":
+        message.text = "ТвердотельныеНакопителиSSD"
+    elif message.text == "1️⃣1️⃣":
+        message.text = "ЖесткиеДискиHDD3.5"
+    elif message.text == "1️⃣2️⃣":
+        message.text = "ЖесткиеДискиHDD2.5"
+
     name_search += message.text
 
-    await message.reply(text="<i>Выберите пункт по которому вы будете искать товар</i>", reply_markup=otbor_tovara(),
+    await message.reply(text="<i>Нажмите на кнопку чтобы отфильтровать товары</i>", reply_markup=otbor_tovara(),
                         parse_mode="HTML")
 
-@dp.message_handler(Text(equals="1️⃣По ценовому диапозону"))
-async def cmd_otbor_1(message: types.Message):
-    await message.reply(text="Введите ценовой диапозон. Пример: 15000 20000\nДопускаются только цифры и не "
-                             "какие больше символы", reply_markup=ReplyKeyboardRemove())
-    await State_Otbor.category_price.set()
-
-@dp.message_handler(Text(equals="2️⃣Поиск по тексту"))
-async def cmd_otbor_1(message: types.Message):
-    await message.reply(text="Введите любой текст и мы по нему будет искать нужные товары\n"
-                             "Пример: Asus 16 ГБ", reply_markup=ReplyKeyboardRemove())
-    await State_Otbor.search_text.set()
-
-@dp.message_handler(state=State_Otbor.search_text)
-async def cmd_state_search_text(message: types.Message, state: FSMContext):
+@dp.message_handler(content_types=["web_app_data"])
+async def cmd_get_tovar(message: types.Message):
     global name_search
+    filter_user = json.loads(message.web_app_data.data)
+
     pizda_bobra = {
-        "Видеокарты": "Videocard",
-        "Игровые ноутбуки": "GameLaptop"
+        "Видеокарты": "Видеокарты",
+        "Корпуса": "Корпуса",
+        "Процессоры": "Процессоры",
+        "ОперативнаяПамять": "ОперативнаяПамять",
+        "БлокПитания": "БлокПитания",
+        "МатеринскиеПлаты": "МатеринскиеПлаты",
+        "ТвердотельныеНакопителиSSD": "ТвердотельныеНакопителиSSD",
+        "ЖесткиеДискиHDD3.5": "ЖесткиеДискиHDD3.5",
+        "ЖесткиеДискиHDD2.5": "ЖесткиеДискиHDD2.5",
+        "Житкостное охлаждение": "ОхлаждениеЖиткое",
+        "Кулеры для процессоров": "КулерыДляПроцессоров",
+        "Вентилятор для корпуса": "ВентиляторДляКорпуса"
     }
+
     try:
-        await state.update_data(search_text=message.text)
-
-        data = await state.get_data()
-
-        search_tovar = data["search_text"].split()
-        await message.answer("Пожалуйста подождите...")
-
         with open(f"Scraping//{pizda_bobra[name_search]}//result.json", encoding="utf-8") as file:
             data = json.load(file)
 
-        for index, item in enumerate(data):
-            pisa = item.get("Стоимость")
-            if all(word.lower() in item["Описание"].lower() for word in search_tovar):
-                card = (f"{hlink(item.get('Название'), item.get('Ссылка на товар'))}\n"
-                        f"{hbold('Id: ')}{item.get('Id')}\n"
-                        f"{hbold('Описание: ')}{item.get('Описание')}\n"
-                        f"{hbold('Цена: ')}{item.get('Стоимость')}руб.\n"
-                        f"{hbold('Средняя оценка: ')}{item.get('Средняя оценка')}\n"
-                        f"{hbold('Количество отзывов: ')}{item.get('Количество отзывов')}\n")
+        get_result = await filter_products(data, filter_user)
 
-                if index % 20 == 0:
-                    time.sleep(5)
+        result_otbor = []
 
-                await message.answer(card, parse_mode="HTML", reply_markup=add_korzina())
+        for i in get_result:
+            result_otbor.append(i)
 
-        await message.answer("Вот, все что мы нашли для вас", reply_markup=main_keyboard())
-        await state.finish()
-    except:
-        await message.answer("Что-то не так, попробуй еще раз😢")
+        for index, item in enumerate(result_otbor):
+            card = (f"{hlink(item.get('Название'), item.get('Ссылка на товар'))}\n"
+                    f"{hbold('Id: ')}{item.get('Id')}\n"
+                    f"{hbold('Описание: ')}{item.get('Описание')}\n"
+                    f"{hbold('Цена: ')}{item.get('Стоимость')}руб.\n"
+                    f"{hbold('Средняя оценка: ')}{item.get('Средняя оценка')}\n"
+                    f"{hbold('Количество отзывов: ')}{item.get('Количество отзывов')}\n")
 
-@dp.message_handler(state=State_Otbor.category_price)
-async def cmd_state_category(message: types.Message, state: FSMContext):
-    global name_search
-    pizda_bobra = {
-        "Видеокарты": "Videocard",
-        "Игровые ноутбуки": "GameLaptop"
-    }
-    try:
-        await state.update_data(category_price=message.text)
+            if index % 20 == 0:
+                time.sleep(5)
 
-        data = await state.get_data()
-
-        put_user1, put_user2 = data["category_price"].split()
-        await message.answer("Пожалуйста подождите...")
-
-        with open(f"Scraping//{pizda_bobra[name_search]}//result.json", encoding="utf-8") as file:
-            data = json.load(file)
-
-        for index, item in enumerate(data):
-            pisa = item.get("Стоимость")
-            if pisa >= int(put_user1) and pisa <= int(put_user2):
-                card = (f"{hlink(item.get('Название'), item.get('Ссылка на товар'))}\n"
-                        f"{hbold('Id: ')}{item.get('Id')}\n"
-                        f"{hbold('Описание: ')}{item.get('Описание')}\n"
-                        f"{hbold('Цена: ')}{item.get('Стоимость')}руб.\n"
-                        f"{hbold('Средняя оценка: ')}{item.get('Средняя оценка')}\n"
-                        f"{hbold('Количество отзывов: ')}{item.get('Количество отзывов')}\n")
-
-                if index % 20 == 0:
-                    time.sleep(5)
-
-                await message.answer(card, parse_mode="HTML", reply_markup=add_korzina())
+            await message.answer(card, parse_mode="HTML", reply_markup=add_korzina())
 
         await message.answer("Вот, все что мы нашли для вас", reply_markup=main_keyboard())
-        await state.finish()
-    except:
+    except Exception as ex:
+        print(ex)
         await message.answer("Что-то не так, попробуй еще раз😢")
 
 @dp.callback_query_handler(text="add_korzina_push")

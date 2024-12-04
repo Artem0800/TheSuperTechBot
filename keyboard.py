@@ -1,18 +1,18 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import WebAppInfo
 
 def main_keyboard():
-    return ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton(text="Найти товар💻"),
+    return ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton(text="Собрать ПК🖥"),
                                                          KeyboardButton(text="Новости об мире технике📰")).add(
         KeyboardButton(text="Накопительные цели💳"),KeyboardButton(text="Моя корзина🗑")
     ).add(KeyboardButton(text="Обновить данные🔄"))
 
-def select_tech_keyboard():
-    return ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton(text="Видеокарты"), KeyboardButton(
-        text="Игровые ноутбуки"
-    )).add(
-        KeyboardButton(text="Вернуться в главное меню🚶🏼")
-    )
+def detali_pc():
+    return ReplyKeyboardMarkup(resize_keyboard=True, row_width=20).add(KeyboardButton("1️⃣"), KeyboardButton("2️⃣"), KeyboardButton("3️⃣"),
+                                                         KeyboardButton("4️⃣")).add(
+        KeyboardButton("5️⃣"), KeyboardButton("6️⃣"), KeyboardButton("7️⃣"), KeyboardButton("8️⃣")
+    ).add(KeyboardButton("9️⃣"), KeyboardButton("1️⃣0️⃣"), KeyboardButton("1️⃣1️⃣"), KeyboardButton("1️⃣2️⃣")).add(KeyboardButton("Вернуться в главное меню🚶🏼"))
 
 def add_korzina():
     return InlineKeyboardMarkup(row_width=5).add(InlineKeyboardButton(
@@ -25,10 +25,9 @@ def delete_korzina():
     ))
 
 def otbor_tovara():
-    return ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton(text="1️⃣По ценовому диапозону"),
-                                                         KeyboardButton(text="2️⃣Поиск по тексту")).add(KeyboardButton(
-        text="Вернуться в главное меню🚶🏼"
-    ))
+    return ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton(text="Начать отбор товара", web_app=WebAppInfo(url="https://artem0800.github.io/WebAppTG/"))
+                                                         ).add(KeyboardButton("Вернуться в главное меню🚶🏼"))
+
 
 def swipe_news():
     return InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton(text="⬅️", callback_data="back"),

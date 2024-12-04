@@ -1,0 +1,35 @@
+{
+    "result": true,
+    "data": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Система охлаждения ARDOR GAMING Frostwave 360 RGB V2 AG",
+        "description": "Система охлаждения ARDOR GAMING Frostwave 360 RGB V2 AG не требует обслуживания после монтажа в системный блок и может нормализовать рабочую температуру центрального процессора с тепловыделением до 280 Вт. Модель оснащается водоблоком из меди и черным алюминиевым радиатором, которые соединены гибкими трубками длиной 465 мм для циркуляции жидкости-теплоносителя. На основание водоблока нанесен слой термопасты для установки на поверхность ЦПУ. \nСЖО для теплонагруженного процессора игровой сборки ARDOR GAMING Frostwave 360 RGB V2 AG получает 3 120-миллиметровых вентилятора, смонтированных на радиаторе длиной 410 мм. В зависимости от текущей нагрузки на ЦПУ кулеры с гидродинамическими подшипниками вращаются под управлением ШИМ со скоростью 500-1800 об/мин. Как в вентиляторы, так и в водоблок интегрированы элементы многоцветной ARGB-подсветки.",
+        "sku": "5431331",
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.dns-shop.ru/product/572d01f94d52ed20/sistema-okhlazdenia-ardor-gaming-frostwave-360-rgb-v2-ag/",
+            "availability": "https://schema.org/InStock",
+            "price": 6699,
+            "priceCurrency": "RUB"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": 4.5,
+            "worstRating": 0,
+            "bestRating": 5,
+            "reviewCount": 5
+        },
+        "image": [
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/190e43867145357f6ccc3dc6583b24fb/09ecbbbb7bac0836a094c3f92b5e13662dbb163f27fe80e5d5ed13f5971fee79.jpg",
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/f13ede9dc8a88f0e1434a29afb03d29d/b8a08345b89bc3eb1b8c8a11b9f58cf1a00c7965b2398ed6dd96377ffc71826a.jpg",
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/67a80d17a65e619d8ce5f06fe359dd2b/8a301ba87ad2a356e16b1fa8a1713e7f696b2e63fbdb9e97904ef0e6bf96c261.jpg"
+        ],
+        "brand": {
+            "@type": "Brand",
+            "name": "ARDOR GAMING"
+        }
+    },
+    "message": "",
+    "errors": []
+}

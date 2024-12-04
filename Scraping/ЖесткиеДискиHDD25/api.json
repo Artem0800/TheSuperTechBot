@@ -1,0 +1,35 @@
+{
+    "result": true,
+    "data": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "0.5 ТБ Жесткий диск WD Blue [WD5000LPZX]",
+        "description": "Жесткий диск WD Blue с интерфейсом подключения SATA III отличается совместимостью с различными вычислительными средами. Он обеспечивает высокую производительность, необходимую для решения повседневных компьютерных задач. Емкость 500 ГБ предоставляет возможность хранения документов и мультимедийных файлов. Надежная металлическая конструкция гарантирует устойчивость накопителя WD Blue к механическим повреждениям и сдавливанию. Фирменная программа Acronis True Image позволяет выполнять клонирование диска и создавать резервные копии.",
+        "sku": "5081020",
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.dns-shop.ru/product/eed710055377ed20/05-tb-zestkij-disk-wd-blue-wd5000lpzx/",
+            "availability": "https://schema.org/InStock",
+            "price": 5999,
+            "priceCurrency": "RUB"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": 4.88,
+            "worstRating": 0,
+            "bestRating": 5,
+            "reviewCount": 35
+        },
+        "image": [
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/7b2e180af02c5258db022a775d709c5a/18e240077b5511818166af3a5a2f8082a209f4d912d2c8fb6f51dcefc48e3ba0.jpg",
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/c5c1c515d4c20b9aae27a0e1904d12eb/8753350875a927463f74494992b6d0c6c8ee5d3ffb34fba8680e55a7c042fe45.jpg",
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/434d164847c5f7eb0cdfbe8084433032/97bde404ca9889a4fb83befad7f6e486209b11790faafce675e19537cf13771e.jpg"
+        ],
+        "brand": {
+            "@type": "Brand",
+            "name": "Western Digital"
+        }
+    },
+    "message": "",
+    "errors": []
+}

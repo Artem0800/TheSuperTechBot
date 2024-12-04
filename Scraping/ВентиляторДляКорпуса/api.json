@@ -1,0 +1,35 @@
+{
+    "result": true,
+    "data": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Вентилятор ExeGate EX09225SAT [EX289006RUS]",
+        "description": "ExeGate EX09225SAT - 92-мм вентилятор с фиксированной скоростью вращения 2500 оборотов в минуту, подшипником скольжения и максимальным уровнем шума 34 дБ.",
+        "sku": "5354944",
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.dns-shop.ru/product/a83fa81d93142ff4/ventilator-exegate-ex09225sat-ex289006rus/",
+            "availability": "https://schema.org/InStock",
+            "price": 399,
+            "priceCurrency": "RUB"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": 5,
+            "worstRating": 0,
+            "bestRating": 5,
+            "reviewCount": 3
+        },
+        "image": [
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/1a2fc7d6e06417e545e0ec3fb726ff56/78694725e4c8b38c198cec30f694d3a233cb97dc9a57bb68f206c26fd41d6541.jpg",
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/d084c6ef15bc5fe71ac4177df0d0728f/37b718644b20abf04b601fba2f04f8e18cf410af092c21888251efe0ff6b3f97.jpg",
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/249f094e48335410eb18a47ef202396f/9d636650a9d0edee44020d28b46b7b3459b8de1b2c3b2a37839b7a1cea6338b5.jpg"
+        ],
+        "brand": {
+            "@type": "Brand",
+            "name": "ExeGate"
+        }
+    },
+    "message": "",
+    "errors": []
+}

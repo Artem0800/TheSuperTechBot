@@ -1,0 +1,34 @@
+{
+    "result": true,
+    "data": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Оперативная память Patriot Signature Line Premium [PSP48G266681H1] 8 ГБ",
+        "description": "Оперативная память Patriot Signature Line Premium [PSP48G266681H1] имеет емкость 8 ГБ, отличается высокой производительностью, за счет чего поможет поднять быстродействие вашего компьютера. Благодаря своим возможностям, а также строгому дизайну данная модель станет отличным выбором для игровых систем и рабочих станций. \nОперативная память Patriot Signature Line Premium [PSP48G266681H1] выполнена в формате DIMM и соответствует стандарту DDR4. Благодаря этому рабочая частота модели может достигать 2666 МГц, что вкупе с пропускной способностью PC21300 и таймингами, соответствующими 19-19-19-43, обеспечивает высокое быстродействие компьютера в различных задачах — при работе с большими массивами данных, в требовательных играх или профессиональной работе с фото и видео высокого разрешения. \nОтличительной особенностью оперативной памяти Patriot Signature Line Premium [PSP48G266681H1] является наличие радиатор пассивного охлаждения, благодаря которому предотвращается перегрев при продолжительной работе. Высота корпуса модуля не превышает 37 мм. Напряжение питания составляет 1.2 В. Оперативная память поставляется поштучно.",
+        "sku": "1384827",
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.dns-shop.ru/product/a87b909cb71c3332/operativnaa-pamat-patriot-signature-line-premium-psp48g266681h1-8-gb/",
+            "availability": "https://schema.org/InStock",
+            "price": 1799,
+            "priceCurrency": "RUB"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": 4.84,
+            "worstRating": 0,
+            "bestRating": 5,
+            "reviewCount": 217
+        },
+        "image": [
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/efeb31ef545747a7c4467d3839a918b3/f6c9923f4bd1cf0a4ddbe10d02cc92b337d8f41e72e7e61147fdc72f9821a036.jpg",
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/151c968ff6c8f7c6c5c61c6afaba78e3/2a247be846e2ad736068a88c844e770a69399dc555055aa4b6ceedcb049efa71.jpg"
+        ],
+        "brand": {
+            "@type": "Brand",
+            "name": "Patriot Memory"
+        }
+    },
+    "message": "",
+    "errors": []
+}

@@ -1,0 +1,35 @@
+{
+    "result": true,
+    "data": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "120 ГБ 2.5\" SATA накопитель Acer SA100 [BL.9BWWA.101]",
+        "description": "SATA накопитель Acer SA100 [BL.9BWWA.101] форм-фактора 2.5 дюйма отличается широкой совместимостью с настольными компьютерами и ноутбуками. Он основан на чипах памяти с технологией 3D NAND и благодаря скорости в режиме последовательного чтения в пределах 561 Мбайт/сек обеспечивает высокие показатели производительности. Данная модель обладает емкостью 120 ГБ, что позволяет разместить довольно большое количество документов и прочих файлов. Корпус твердотельного накопителя Acer SA100 устойчив к механическим повреждениям и вибрации.",
+        "sku": "4778651",
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.dns-shop.ru/product/22b8e7b986de2ff0/120-gb-25-sata-nakopitel-acer-sa100-bl9bwwa101/",
+            "availability": "https://schema.org/InStock",
+            "price": 1850,
+            "priceCurrency": "RUB"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": 4.8,
+            "worstRating": 0,
+            "bestRating": 5,
+            "reviewCount": 38
+        },
+        "image": [
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/29a28b5229b708cf6a1591ca1ddb3b3c/1aadf5960b4930346675ab05ffe658c81822540057ec595eb6997ab9538ca690.jpg",
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/a1abbd46df586d3d04d39d18b48913cb/1c7e5a0b2d6f7d2d45a33d32fa5abe6622f35fc9c4ecff543df3d742c826a7b8.jpg",
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/93b535c370982e7d51dd4224509b8782/ceff64253e5e625ea1a98757b0159d6f72ebb0ab2fdac28e58711e0ce4cafd65.jpg"
+        ],
+        "brand": {
+            "@type": "Brand",
+            "name": "Acer"
+        }
+    },
+    "message": "",
+    "errors": []
+}

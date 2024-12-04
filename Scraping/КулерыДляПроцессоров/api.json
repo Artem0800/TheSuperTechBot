@@ -1,0 +1,35 @@
+{
+    "result": true,
+    "data": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Кулер для процессора PCCooler Paladin 400 ARGB [GI-Paladin 400 ARGB]",
+        "description": "Кулер для процессора PCCOOLER PALADIN 400 ARGB [GI-Paladin 400 ARGB] с возможностью рассеивания до 200 Вт тепловой энергии подойдет для игровой сборки с теплонагруженным ЦПУ. В башенной системе охлаждения предусмотрены медно-алюминиевая контактная площадка и алюминиевый радиатор для рассеивания тепла. За счет 4 тепловых трубок достигается эффективность передачи к радиатору тепла, выделяемого процессором. \nВы сможете использовать систему охлаждения PCCOOLER PALADIN 400 ARGB [GI-Paladin 400 ARGB] на процессоре с разъемом подключения LGA 1150, LGA 1151, LGA 1156 или другим сокетом из широкого ряда. В кулере применен вентилятор с подключением к разъему 4-pin, который поддерживает вращение со скоростью 400-1600 об/мин. В белую крыльчатку вентилятора встроены многоцветные светодиоды ARGB-подсветки.",
+        "sku": "5454471",
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.dns-shop.ru/product/952b3948ece6d582/kuler-dla-processora-pccooler-paladin-400-argb-gi-paladin-400-argb/",
+            "availability": "https://schema.org/InStock",
+            "price": 2699,
+            "priceCurrency": "RUB"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": 5,
+            "worstRating": 0,
+            "bestRating": 5,
+            "reviewCount": 1
+        },
+        "image": [
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/707b78c83da6b763d98ed6629c6fa194/13b6cd60914039bcebba2a8d0ec6ccdb8123bec3073efc3541537e4c8dda1511.jpg",
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/41c40969893d0708d1f979ad3f0b9f87/7c21e2c473c08f8b113f10df4656f629327cde8600917660968b168942d348b3.jpg",
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/75d0741dcbdf889ee057daae3991705e/435c577920ac05211ba936881b4d48b76e9f138e03f1830ac9caf24e66bb3047.jpg"
+        ],
+        "brand": {
+            "@type": "Brand",
+            "name": "PCCooler"
+        }
+    },
+    "message": "",
+    "errors": []
+}

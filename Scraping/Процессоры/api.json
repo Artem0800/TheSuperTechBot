@@ -1,0 +1,34 @@
+{
+    "result": true,
+    "data": {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "Процессор AMD Ryzen 5 4500 OEM",
+        "description": "Процессор AMD Ryzen 5 4500 OEM способен стать основой геймерского ноутбука или ПК. Для этого он имеет 6 ядер с 12 потоками. Процессор выполнен на архитектуре Zen 2 и изготовлен по технологии 7 нм. Базовая частота устройства составляет 3.6 ГГц при возможности разгона до 4.1 ГГц. Оно также поддерживает технологии Precision Boost и Precision Boost Overdrive для максимального повышения производительности в автоматическом режиме. Поддержка технологии виртуализации – еще один плюс AMD Ryzen 5 4500 OEM, который способны оценить геймеры и другие опытные пользователи.",
+        "sku": "5026143",
+        "offers": {
+            "@type": "Offer",
+            "url": "https://www.dns-shop.ru/product/d237e136aff1ed20/processor-amd-ryzen-5-4500-oem/",
+            "availability": "https://schema.org/InStock",
+            "price": 7699,
+            "priceCurrency": "RUB"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": 4.77,
+            "worstRating": 0,
+            "bestRating": 5,
+            "reviewCount": 481
+        },
+        "image": [
+            "https://c.dns-shop.ru/thumb/st1/fit/300/300/a17800a9248489eccdde490ed693e28b/a42a9e584a80195af99d28e00fce8f09baf87c3d1291ad01d157d7c55e2b674e.jpg",
+            "https://c.dns-shop.ru/thumb/st4/fit/300/300/56e1b94928a37a2a3d8a6d2b0f98c707/43be4f282b9e05154ec37941b1f895ca374332e12cc3f713614bf98f0cecbc65.jpg"
+        ],
+        "brand": {
+            "@type": "Brand",
+            "name": "AMD"
+        }
+    },
+    "message": "",
+    "errors": []
+}

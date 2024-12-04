@@ -56,7 +56,7 @@ def get_data(url):
     with open("ScrapingNews//news.json", "w", encoding="utf-8") as file:
         json.dump(result_data, file, indent=4, ensure_ascii=False)
 
-async def get_news():
+def get_news():
     url = get_link_news()
     get_data(url)
 
