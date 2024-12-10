@@ -42,7 +42,6 @@ def get_api_id():
 
 def data_write_json_csv(link_api):
     result_data = []
-    ai = []
     for ind, item in enumerate(link_api):
         response = requests.get(item, headers=headers, cookies=cookies)
         print(ind + 1, item)
@@ -66,12 +65,6 @@ def data_write_json_csv(link_api):
                     "Картинки": js.get("data").get("image"),
                 }
             )
-            ai.append(
-                {
-                    "Название": js.get("data").get("name"),
-                    "Стоимость": js.get("data").get("offers").get("price"),
-                }
-            )
         else:
             result_data.append(
                 {
@@ -85,18 +78,9 @@ def data_write_json_csv(link_api):
                     "Картинки": js.get("data").get("image")
                 }
             )
-            ai.append(
-                {
-                    "Название": js.get("data").get("name"),
-                    "Стоимость": js.get("data").get("offers").get("price"),
-                }
-            )
 
     with open(f"Scraping//ЖесткиеДискиHDD35//result.json", "w", encoding="utf-8") as file:
         json.dump(result_data, file, indent=4, ensure_ascii=False)
-
-    with open(f"AI//data.json", "a", encoding="utf-8") as file:
-        json.dump(ai, file, indent=4, ensure_ascii=False)
 
     print("Запись в json файл закончена")
 

@@ -6,7 +6,7 @@ def main_keyboard():
     return ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton(text="Собрать ПК🖥"),
                                                          KeyboardButton(text="Новости об мире технике📰")).add(
         KeyboardButton(text="Накопительные цели💳"),KeyboardButton(text="Моя корзина🗑")
-    ).add(KeyboardButton(text="Обновить данные🔄"))
+    ).add(KeyboardButton(text="Обновить данные🔄")).add("Сборка ПК с помощью AI🤖")
 
 def detali_pc():
     return ReplyKeyboardMarkup(resize_keyboard=True, row_width=20).add(KeyboardButton("1️⃣"), KeyboardButton("2️⃣"), KeyboardButton("3️⃣"),
@@ -46,3 +46,23 @@ def api_pay():
     ).add(
         InlineKeyboardButton("Удалить❌", callback_data="delete_target")
     )
+
+def ai_kb():
+    return InlineKeyboardMarkup(row_width=4).add(
+        InlineKeyboardButton(text="Бюджетная", callback_data="low_money"),
+        InlineKeyboardButton(text="Дорогая", callback_data="hard_money")
+    )
+
+def ai_kb_pros():
+    return InlineKeyboardMarkup(row_width=4).add(
+        InlineKeyboardButton(text="AMD", callback_data="amd"),
+        InlineKeyboardButton(text="INTEL", callback_data="intel")
+    )
+
+def swipe_ai():
+    return InlineKeyboardMarkup(row_width=2).add(InlineKeyboardButton(text="⬅️", callback_data="back_ai"),
+                                                 InlineKeyboardButton(text="➡️", callback_data="forward_ai"),
+    InlineKeyboardButton(text="Первая", callback_data="swipe_one_ai"),
+    InlineKeyboardButton(text="Последняя", callback_data="swipe_last_ai"),
+                                                 InlineKeyboardButton(text="Добавить в корзину🗑", callback_data="add_korzina_push")
+                                                ).add(InlineKeyboardButton("Закрыть❌", callback_data="close_news_ai"))

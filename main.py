@@ -3,6 +3,7 @@ from confic import bot, dp
 from aiogram import executor, types
 from keyboard import main_keyboard, add_korzina, otbor_tovara
 from keyboard import delete_korzina, swipe_news, kb_add_target_pay, api_pay, detali_pc
+from keyboard import ai_kb, ai_kb_pros, swipe_ai
 from aiogram.utils.markdown import hbold, hlink
 from aiogram.dispatcher.filters import Text
 from Scraping.Видеокарты.parce import videocard
@@ -26,6 +27,7 @@ from sqlite import create_target_pay, delete_target_pay, update_user_sum
 from ScrapingNews.scraping_news import get_news
 from pay import order
 from filter_user import filter_products
+from AI.gpt import get_res_ai
 
 async def info_start(_):
     print("Я запустился")
@@ -100,6 +102,15 @@ async def cmd_update_scrap(message: types.Message):
     with open("SQL//ebaty.json", "w", encoding="utf-8") as file:
         json.dump(union, file, indent=4, ensure_ascii=False)
 
+    with open("SQL//ebaty.json", encoding="utf-8") as file:
+        huba = json.load(file)
+
+    with open("AI//data.txt", "w", encoding="utf-8") as file:
+        for i in huba:
+            file.write(
+                f"Id: {i['Id']} {i['Название']} - {i['Стоимость']}\n"
+            )
+
     await message.answer(text="Данные обновлены", reply_markup=main_keyboard())
 
 @dp.message_handler(Text(equals="Собрать ПК🖥"))
@@ -161,8 +172,8 @@ async def cmd_get_tovar(message: types.Message):
         "БлокПитания": "БлокПитания",
         "МатеринскиеПлаты": "МатеринскиеПлаты",
         "ТвердотельныеНакопителиSSD": "ТвердотельныеНакопителиSSD",
-        "ЖесткиеДискиHDD3.5": "ЖесткиеДискиHDD3.5",
-        "ЖесткиеДискиHDD2.5": "ЖесткиеДискиHDD2.5",
+        "ЖесткиеДискиHDD3.5": "ЖесткиеДискиHDD35",
+        "ЖесткиеДискиHDD2.5": "ЖесткиеДискиHDD25",
         "Житкостное охлаждение": "ОхлаждениеЖиткое",
         "Кулеры для процессоров": "КулерыДляПроцессоров",
         "Вентилятор для корпуса": "ВентиляторДляКорпуса"
@@ -322,7 +333,7 @@ async def cmd_news_forward(callback: types.CallbackQuery):
 async def cmd_news_forward(callback: types.CallbackQuery):
     global count_news
     await callback.message.edit_text("Мы собираем свежие данные подождите...")
-    await get_news()
+    get_news()
     count_news = 0
 
     with open("ScrapingNews//news.json", encoding="utf-8") as file:
@@ -444,6 +455,311 @@ async def cmd_pay(message: types.Message):
                                  reply_markup=api_pay())
         await message.answer(f"Общая сумма: {count_sum}руб")
         await message.reply("Вот ваши цели, вы можете создать еще", reply_markup=kb_add_target_pay())
+
+money = ""
+pros = ""
+
+@dp.message_handler(Text(equals="Сборка ПК с помощью AI🤖"))
+async def cmd_gpt(message: types.Message):
+    await message.reply("Какого бюджета тебе собрать ПК?", reply_markup=ai_kb())
+
+@dp.callback_query_handler(text="low_money")
+async def call_back_lowmoney(callback: types.CallbackQuery):
+    global money
+    money = ""
+    money += callback.data
+    await callback.message.edit_text("На базе какого процессора вы хотите сборку?", reply_markup=ai_kb_pros())
+
+@dp.callback_query_handler(text="hard_money")
+async def call_back_hardmoney(callback: types.CallbackQuery):
+    global money
+    money = ""
+    money += callback.data
+    await callback.message.edit_text("На базе какого процессора вы хотите сборку?", reply_markup=ai_kb_pros())
+
+txt1 = (f"Привет, можешь помочь мне собрать какую нибудь бюджетный компьютер на базе процессора AMD? Мне нужны рекомендации по выбору компонентов:"
+        f"процессор, материнская плата, оперативная память, видеокарта, блок питания, корпус накопитель и охлаждение."
+        f"Только запчасти ты должен выбирать исходя из данного списка, ну и вытащи мне Id каждой детали."
+        f"И еще один нюанс детали должны быть совместимые."
+        f"Напиши на русском языке")
+
+txt2 = (f"Можешь помочь мне собрать какой нибудь очень дорогой компьютер на базе процессора AMD? Мне нужны рекомендации по следующим компонентам:"
+        f" процессор, материнская плата, оперативная память, видеокарта, блок питания, корпус, накопитель 3.5, и ssd, а также кулер для процеесора ну и доп охлаждение "
+        f"Только запчасти ты должен выбирать исходя из данного списка, ну и вытащи мне Id каждой детали."
+        f"и дополнительное охлаждение. Пожалуйста, перечисли каждый компонент"
+        f"И еще один нюанс детали должны быть совместимые."
+        f"Напиши на русском языке")
+
+txt3 = (f"Привет, можешь помочь мне собрать какую нибудь бюджетный компьютер на базе процессора Intel? Мне нужны рекомендации по выбору компонентов:"
+        f"процессор, материнская плата, оперативная память, видеокарта, блок питания, корпус накопитель и охлаждение."
+        f"Только запчасти ты должен выбирать исходя из данного списка, ну и вытащи мне Id каждой детали."
+        f"И еще один нюанс детали должны быть совместимые."
+        f"Напиши на русском языке")
+
+txt4 = (f"Можешь помочь мне собрать какой нибудь очень дорогой компьютер на базе процессора Intel? Мне нужны рекомендации по следующим компонентам:"
+        f" процессор, материнская плата, оперативная память, видеокарта, блок питания, корпус, накопитель 3.5, и ssd, а также кулер для процеесора ну и доп охлаждение "
+        f"Только запчасти ты должен выбирать исходя из данного списка, ну и вытащи мне Id каждой детали."
+        f"и дополнительное охлаждение. Пожалуйста, перечисли каждый компонент"
+        f"И еще один нюанс детали должны быть совместимые."
+        f"Напиши на русском языке")
+
+count_ai = 0
+
+@dp.callback_query_handler(text="amd")
+async def call_back_amd(callback: types.CallbackQuery):
+    await callback.message.delete()
+    await callback.message.answer("Пожалуйста подождите, AI собирает для вас ПК", reply_markup=ReplyKeyboardRemove())
+
+    with open("SQL//ebaty.json", encoding="utf-8") as file:
+        data = json.load(file)
+
+    global pros
+    global money
+    pros = ""
+    pros += callback.data
+
+    user = ""
+
+    if pros == "amd" and money == "low_money":
+        user += txt1
+    elif pros == "amd" and money == "hard_money":
+        user += txt2
+    elif pros == "intel" and money == "low_money":
+        user += txt3
+    elif pros == "intel" and money == "hard_money":
+        user += txt4
+
+    with open("AI//data.txt", encoding="utf-8") as file:
+        res = file.read()
+    txt = f"""
+    {user}
+    {res}
+    """
+    result = get_res_ai(txt)
+
+    count_price = 0
+
+    bim = []
+
+    for i in result:
+        for j in data:
+            if i == j["Id"]:
+                bim.append(
+                    {
+                        "Id": j["Id"],
+                        "Название": j["Название"],
+                        "Описание": j["Описание"],
+                        "Ссылка на товар": j["Ссылка на товар"],
+                        "Стоимость": j["Стоимость"],
+                        "Средняя оценка": j["Средняя оценка"],
+                        "Количество отзывов": j["Количество отзывов"],
+                        "Картинки": j["Картинки"]
+                    }
+                )
+                # card = (f"{hlink(j.get('Название'), j.get('Ссылка на товар'))}\n"
+                #         f"{hbold('Id: ')}{j.get('Id')}\n"
+                #         f"{hbold('Описание: ')}{j.get('Описание')}\n"
+                #         f"{hbold('Цена: ')}{j.get('Стоимость')}руб.\n"
+                #         f"{hbold('Средняя оценка: ')}{j.get('Средняя оценка')}\n"
+                #         f"{hbold('Количество отзывов: ')}{j.get('Количество отзывов')}\n")
+
+                # count_price += j["Стоимость"]
+
+    #             await callback.message.answer(card, parse_mode="HTML", reply_markup=add_korzina())
+    #
+    # await callback.message.answer(f"Общая стоимость: {count_price}руб.", reply_markup=main_keyboard())
+
+    global count_ai
+
+    with open("AI//get.json", "w", encoding="utf-8") as file:
+        json.dump(bim, file, indent=4, ensure_ascii=False)
+
+    with open("AI//get.json", encoding="utf-8") as file:
+        opa = json.load(file)
+
+    for i in opa:
+        count_price += i["Стоимость"]
+
+    card = (f"{hlink(opa[count_ai].get('Название'), opa[count_ai].get('Ссылка на товар'))}\n"
+            f"{hbold('Id: ')}{opa[count_ai].get('Id')}\n"
+            f"{hbold('Описание: ')}{opa[count_ai].get('Описание')}\n"
+            f"{hbold('Цена: ')}{opa[count_ai].get('Стоимость')}руб.\n"
+            f"{hbold('Средняя оценка: ')}{opa[count_ai].get('Средняя оценка')}\n"
+            f"{hbold('Количество отзывов: ')}{opa[count_ai].get('Количество отзывов')}\n"
+            f"{hbold(f'{count_ai + 1}/{len(opa)}')}")
+
+    await callback.message.answer(card, parse_mode="HTML", reply_markup=swipe_ai())
+    await callback.message.answer(f"Общая стоимость: {count_price}руб.", reply_markup=main_keyboard())
+
+@dp.callback_query_handler(text="intel")
+async def call_back_intel(callback: types.CallbackQuery):
+    await callback.message.delete()
+    await callback.message.answer("Пожалуйста подождите, AI собирает для вас ПК", reply_markup=ReplyKeyboardRemove())
+
+    with open("SQL//ebaty.json", encoding="utf-8") as file:
+        data = json.load(file)
+
+    global pros
+    global money
+    pros = ""
+    pros += callback.data
+
+    user = ""
+
+    if pros == "amd" and money == "low_money":
+        user += txt1
+    elif pros == "amd" and money == "hard_money":
+        user += txt2
+    elif pros == "intel" and money == "low_money":
+        user += txt3
+    elif pros == "intel" and money == "hard_money":
+        user += txt4
+
+    with open("AI//data.txt", encoding="utf-8") as file:
+        res = file.read()
+    txt = f"""
+    {user}
+    {res}
+    """
+    result = get_res_ai(txt)
+
+    count_price = 0
+
+    bim = []
+
+    for i in result:
+        for j in data:
+            if i == j["Id"]:
+                bim.append(
+                    {
+                        "Id": j["Id"],
+                        "Название": j["Название"],
+                        "Описание": j["Описание"],
+                        "Ссылка на товар": j["Ссылка на товар"],
+                        "Стоимость": j["Стоимость"],
+                        "Средняя оценка": j["Средняя оценка"],
+                        "Количество отзывов": j["Количество отзывов"],
+                        "Картинки": j["Картинки"]
+                    }
+                )
+
+    global count_ai
+
+    with open("AI//get.json", "w", encoding="utf-8") as file:
+        json.dump(bim, file, indent=4, ensure_ascii=False)
+
+    with open("AI//get.json", encoding="utf-8") as file:
+        opa = json.load(file)
+
+    for i in opa:
+        count_price += i["Стоимость"]
+
+    card = (f"{hlink(opa[count_ai].get('Название'), opa[count_ai].get('Ссылка на товар'))}\n"
+            f"{hbold('Id: ')}{opa[count_ai].get('Id')}\n"
+            f"{hbold('Описание: ')}{opa[count_ai].get('Описание')}\n"
+            f"{hbold('Цена: ')}{opa[count_ai].get('Стоимость')}руб.\n"
+            f"{hbold('Средняя оценка: ')}{opa[count_ai].get('Средняя оценка')}\n"
+            f"{hbold('Количество отзывов: ')}{opa[count_ai].get('Количество отзывов')}\n"
+            f"{hbold(f'{count_ai + 1}/{len(opa)}')}")
+
+    await callback.message.answer(card, parse_mode="HTML", reply_markup=swipe_ai())
+    await callback.message.answer(f"Общая стоимость: {count_price}руб.", reply_markup=main_keyboard())
+
+@dp.callback_query_handler(text="swipe_one_ai")
+async def cmd_news_forward(callback: types.CallbackQuery):
+    global count_ai
+    try:
+        with open("AI//get.json", encoding="utf-8") as file:
+            opa = json.load(file)
+
+        count_ai = 0
+
+        card = (f"{hlink(opa[count_ai].get('Название'), opa[count_ai].get('Ссылка на товар'))}\n"
+            f"{hbold('Id: ')}{opa[count_ai].get('Id')}\n"
+            f"{hbold('Описание: ')}{opa[count_ai].get('Описание')}\n"
+            f"{hbold('Цена: ')}{opa[count_ai].get('Стоимость')}руб.\n"
+            f"{hbold('Средняя оценка: ')}{opa[count_ai].get('Средняя оценка')}\n"
+            f"{hbold('Количество отзывов: ')}{opa[count_ai].get('Количество отзывов')}\n"
+            f"{hbold(f'{count_ai + 1}/{len(opa)}')}")
+
+        await callback.message.edit_text(card, parse_mode="HTML", reply_markup=swipe_ai())
+    except:
+        await callback.answer("Ты тупой?")
+
+@dp.callback_query_handler(text="swipe_last_ai")
+async def cmd_news_forward(callback: types.CallbackQuery):
+    global count_ai
+    try:
+        with open("AI//get.json", encoding="utf-8") as file:
+            opa = json.load(file)
+
+        count_ai = len(opa) - 1
+
+        card = (f"{hlink(opa[count_ai].get('Название'), opa[count_ai].get('Ссылка на товар'))}\n"
+            f"{hbold('Id: ')}{opa[count_ai].get('Id')}\n"
+            f"{hbold('Описание: ')}{opa[count_ai].get('Описание')}\n"
+            f"{hbold('Цена: ')}{opa[count_ai].get('Стоимость')}руб.\n"
+            f"{hbold('Средняя оценка: ')}{opa[count_ai].get('Средняя оценка')}\n"
+            f"{hbold('Количество отзывов: ')}{opa[count_ai].get('Количество отзывов')}\n"
+            f"{hbold(f'{count_ai + 1}/{len(opa)}')}")
+
+        await callback.message.edit_text(card, parse_mode="HTML", reply_markup=swipe_ai())
+    except:
+        await callback.answer("Ты тупой?")
+
+@dp.callback_query_handler(text="forward_ai")
+async def cmd_news_forward(callback: types.CallbackQuery):
+    with open("AI//get.json", encoding="utf-8") as file:
+        opa = json.load(file)
+    try:
+        global count_ai
+        if count_ai >= len(opa) - 1:
+            await callback.answer("Ты тупой?")
+        else:
+            count_ai += 1
+
+            with open("AI//get.json", encoding="utf-8") as file:
+                opa = json.load(file)
+
+            card = (f"{hlink(opa[count_ai].get('Название'), opa[count_ai].get('Ссылка на товар'))}\n"
+            f"{hbold('Id: ')}{opa[count_ai].get('Id')}\n"
+            f"{hbold('Описание: ')}{opa[count_ai].get('Описание')}\n"
+            f"{hbold('Цена: ')}{opa[count_ai].get('Стоимость')}руб.\n"
+            f"{hbold('Средняя оценка: ')}{opa[count_ai].get('Средняя оценка')}\n"
+            f"{hbold('Количество отзывов: ')}{opa[count_ai].get('Количество отзывов')}\n"
+            f"{hbold(f'{count_ai + 1}/{len(opa)}')}")
+
+            await callback.message.edit_text(card, parse_mode="HTML", reply_markup=swipe_ai())
+    except:
+        pass
+
+@dp.callback_query_handler(text="back_ai")
+async def cmd_news_forward(callback: types.CallbackQuery):
+    try:
+        global count_ai
+        if count_ai <= 0:
+            await callback.answer("Ты тупой?")
+        else:
+            count_ai -= 1
+
+            with open("AI//get.json", encoding="utf-8") as file:
+                opa = json.load(file)
+
+            card = (f"{hlink(opa[count_ai].get('Название'), opa[count_ai].get('Ссылка на товар'))}\n"
+            f"{hbold('Id: ')}{opa[count_ai].get('Id')}\n"
+            f"{hbold('Описание: ')}{opa[count_ai].get('Описание')}\n"
+            f"{hbold('Цена: ')}{opa[count_ai].get('Стоимость')}руб.\n"
+            f"{hbold('Средняя оценка: ')}{opa[count_ai].get('Средняя оценка')}\n"
+            f"{hbold('Количество отзывов: ')}{opa[count_ai].get('Количество отзывов')}\n"
+            f"{hbold(f'{count_ai + 1}/{len(opa)}')}")
+
+            await callback.message.edit_text(card, parse_mode="HTML", reply_markup=swipe_ai())
+    except:
+        pass
+
+@dp.callback_query_handler(text="close_news_ai")
+async def cmd_close_news(callback: types.CallbackQuery):
+    await callback.message.delete()
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True, on_startup=info_start)

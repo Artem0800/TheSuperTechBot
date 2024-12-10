@@ -15,10 +15,10 @@
         },
         "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": 4,
+            "ratingValue": 4.14,
             "worstRating": 0,
             "bestRating": 5,
-            "reviewCount": 4
+            "reviewCount": 5
         },
         "image": [
             "https://c.dns-shop.ru/thumb/st1/fit/300/300/ff8e74131eb6db4913dff6e03a9fe462/c77812f5bc74446a49326f3ee9a84139465d326e3afdb91e6d27978694cc47ea.jpg",
